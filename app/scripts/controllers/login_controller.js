@@ -1,0 +1,4 @@
+// user is directed to
+Pecan.LoginContoller = Ember.Controller.extend({
+  
+});
