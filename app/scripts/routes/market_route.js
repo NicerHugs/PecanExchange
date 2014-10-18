@@ -1,5 +1,5 @@
 Pecan.MarketRoute = Ember.Route.extend({
-  model: function(params) {
+  model: function() {
     return this.store.find('product');
   },
 });

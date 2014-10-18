@@ -1,4 +1,64 @@
 {{!-- the wrapper view that is consistent throughout the site. header and footer --}}
+<div class="container">
+  <header>
+    <div class="logo">
+      <img src="images/Logo.png">
+    </div>
+    <nav>
+      {{#link-to "index"}}Our Mission{{/link-to}}
+      {{#link-to "growers"}}Browse Growers{{/link-to}}
+      {{#link-to "market"}}Shop Farm Direct Pecans{{/link-to}}
+    </nav>
+  </header>
 
-application template
-{{outlet}}
+  <main>
+    {{outlet}}
+  </main>
+
+  <footer>
+    <div class="logo">
+      <img src="images/Logo-NoTag.png">
+      <p>&copy; Pecan Exchange 2014</p>
+      <p>All Rights Reserved</p>
+    </div>
+    <ul>
+      <h4>Company</h4>
+      <li>
+        {{#link-to "index"}}Our Mission{{/link-to}}
+      </li>
+      <li>
+        {{#link-to "index"}}Terms and Conditions{{/link-to}}
+      </li>
+      <li>
+        {{#link-to "index"}}Privacy{{/link-to}}
+      </li>
+    </ul>
+    <ul>
+      <h4>Browse</h4>
+      <li>
+        {{#link-to "market"}}Search Pecans{{/link-to}}
+      </li>
+      <li>
+        {{#link-to "growers"}}Growers{{/link-to}}
+      </li>
+    </ul>
+    <ul>
+      <h4>Account</h4>
+      <li>
+        {{#link-to "index"}}My Profile{{/link-to}}
+      </li>
+      <li>
+        {{#link-to "index"}}Account Details{{/link-to}}
+      </li>
+    </ul>
+    <ul>
+      <h4>Contact</h4>
+      <li>
+        411 University Ridge,
+      </li>
+      <li>
+        Greenville, SC 29607
+      </li>
+    </ul>
+  </footer>
+</div><!--container-->

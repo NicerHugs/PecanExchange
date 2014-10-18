@@ -1,3 +1,275 @@
 // Bourbon & Neat
 @import '../../bower_components/bourbon/dist/bourbon';
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
+
+
+// ============================================================================
+                              // mixins and variables
+// =============================================================================
+
+$orange: #d9644b;
+$grey: #464248;
+$light-grey: #c7c7c8;
+$main-bg: #edeee7;
+$shadow: rgba(70, 66, 72, .5);
+$section-bg: #fff;
+$serif: 'utopia-std';
+$sans: 'futura-pt';
+
+// ============================================================================
+                              // base styles
+// =============================================================================
+
+body {
+  background: $grey;
+  color: $grey;
+  font-family: $serif;
+}
+
+.container {
+  margin: rem(100);
+  overflow: auto;
+}
+
+main {
+  background: $main-bg;
+  margin: 0 auto;
+  max-width: 1240px;
+  width: 100%;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+h4 {
+  color: $orange;
+  display: inline-block;
+  font-family: $sans;
+  font-weight: 700;
+  letter-spacing: rem(2);
+  margin: rem(10);
+  text-transform: uppercase;
+  font-size: rem(13);
+  line-height: rem(25);
+
+  &.price {
+    color: $grey;
+    position: absolute;
+    right: 10px;
+  }
+}
+
+span {
+  color: $light-grey;
+}
+
+ul {
+  list-style: none;
+  padding: rem(20);
+}
+
+.content {
+  background: $main-bg;
+  padding: rem(50) 5%;
+}
+
+
+
+// ============================================================================
+                              // item view styles
+// =============================================================================
+
+
+.item-view {
+  background: $section-bg;
+  box-shadow: 0 3px 5px 0 $shadow;
+  float: left;
+  height: rem(220);
+  margin: 0 0 rem(50) 8%;
+  overflow: auto;
+  padding: rem(5);
+  position: relative;
+  width: 42%;
+  transition-duration: .05s;
+
+  h4 {
+    margin: 0 rem(10);
+  }
+
+  img {
+    border: 0;
+    height: rem(145);
+    width: 100%;
+    object-fit: cover;
+  }
+
+  p,
+  span {
+    display: inline-block;
+    font-size: rem(15);
+    margin: 0 0 0 rem(10);
+    padding: 0;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 5px 1px $shadow;
+  }
+}
+
+
+// ============================================================================
+                              // header styles
+// =============================================================================
+
+header {
+  background: $section-bg;
+  height: 140px;
+  padding: rem(10);
+  position: relative;
+
+  img {
+    position: absolute;
+    left: 5%;
+    top: 20%;
+    width: 20%;
+  }
+
+  .active {
+    background: $orange;
+    color: #fff;
+  }
+}
+
+nav {
+  display: inline-block;
+  position: absolute;
+  right: 8%;
+  top: 35%;
+
+  a {
+    color: $grey;
+    display: inline-block;
+    font-family: $sans;
+    padding: rem(10);
+    text-decoration: none;
+  }
+}
+
+
+// ============================================================================
+                              // market styles
+// =============================================================================
+
+.main-header {
+  background: url('../images/bg-subhead.jpg');
+  color: #fff;
+  height: 180px;
+  padding: rem(50);
+}
+
+.products {
+  margin-left: 25%;
+  overflow: auto;
+  width: 75%;
+}
+
+
+// ============================================================================
+                              // sidebar styles
+// =============================================================================
+
+.sidebar {
+  background: $section-bg;
+  box-shadow: 0 3px 5px 0 $shadow;
+  float: left;
+  padding: rem(10);
+  width: 25%;
+
+  h4 {
+    margin-left: 0;
+  }
+
+  input[type=text] {
+    background: lighten($main-bg, 5%);
+    border: solid 1px $light-grey;
+    border-radius: rem(2);
+    box-shadow: inset 0 1px 2px 0 $shadow;
+    height: rem(40);
+    outline: 0;
+    padding: rem(10);
+    width: 100%;
+  }
+
+  ul {
+    padding: 0;
+
+    li {
+      border-left: solid 1px $light-grey;
+      margin-left: rem(20);
+      padding: rem(5) rem(10);
+    }
+  }
+}
+
+
+// ============================================================================
+                              // footer styles
+// =============================================================================
+
+footer {
+  background: $section-bg;
+  overflow: auto;
+  padding: 0 rem(40);
+
+  .logo {
+    color: $light-grey;
+    float: left;
+    font-size: rem(11);
+    font-weight: 400;
+    letter-spacing: rem(.8);
+    margin-top: rem(15);
+    padding: rem(20);
+    text-align: center;
+    width: 20%;
+
+    p {
+      margin: 0;
+    }
+
+    img {
+      width: 100%;
+      margin-bottom: rem(5);
+    }
+  }
+
+  ul {
+    float: left;
+    font-size: rem(11);
+    width: 20%;
+
+    h4 {
+      color: $grey;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    a,
+    li {
+      color: $grey;
+      line-height: rem(15);
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+//

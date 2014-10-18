@@ -5,11 +5,13 @@ Pecan.Router.map(function() {
   // market shows all available products and allows buyers to filter/sort/search
   this.route("market");
 
-  // profile for grower
-  // displays all their farm info to personalize them, also has their listings
-  this.resource("grower", /* { path: "/:grower_id" }*/function() {
-    // grower adds/deletes products and edits general profile info
-    this.route("edit");
+  // list of growers
+  this.resource("growers", function() {
+    // grower profile, displays all their farm info to personalize them, also has their listings
+    this.resource("grower",/* { path: "/:grower_id" }*/function() {
+      // grower adds/deletes products and edits general profile info
+      this.route("edit");
+    });
   });
 
   this.resource("product", /* { path: "/:listing_id" }, */function() {
