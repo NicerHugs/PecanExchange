@@ -1,5 +1,4 @@
-Pecan.OrderHeader = DS.Model.extend({
-  id: DS.attr('string'),
+Pecan.Order = DS.Model.extend({
   orderNumber: DS.attr('number'),
   user: DS.belongsTo('user'),
   // billing address info
@@ -18,14 +17,14 @@ Pecan.OrderHeader = DS.Model.extend({
   s_state: DS.attr('string'),
   s_country: DS.attr('string'),
   s_phone: DS.attr('string'),
+  orderItems: DS.attr('string')
 });
 
 
-Pecan.OrderDetails = DS.Model.extend({
-  id: DS.attr('string'),
-  orderHeaderID: DS.belongsTo('orderHeader'),
+Pecan.OrderDetail = DS.Model.extend({
+  orderID: DS.belongsTo('order'),
   productID: DS.belongsTo('product'),
-  packageType: DS.attr('string'),
+  optionID: DS.attr('string'),
   qty: DS.attr('number'),
   qtyCase: DS.attr('number')
 });

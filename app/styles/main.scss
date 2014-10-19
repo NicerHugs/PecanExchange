@@ -12,6 +12,7 @@ $grey: #464248;
 $light-grey: #c7c7c8;
 $main-bg: #edeee7;
 $shadow: rgba(70, 66, 72, .5);
+$button-shadow: darken($orange, 20%);
 $section-bg: #fff;
 $serif: 'utopia-std';
 $sans: 'futura-pt';
@@ -44,6 +45,20 @@ h1 {
   margin: 0;
 }
 
+h2 {
+  color: $orange;
+  font-family: $sans;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+h3 {
+  margin-bottom: rem(10);
+  text-align: center;
+}
+
 h4 {
   color: $orange;
   display: inline-block;
@@ -73,7 +88,151 @@ ul {
 
 .content {
   background: $main-bg;
+  overflow: auto;
   padding: rem(50) 5%;
+}
+
+a {
+  color: $grey;
+}
+
+// ============================================================================
+                              // index styles
+// =============================================================================
+
+.index-header {
+  background: brown;
+  height: rem(480);
+  position: relative;
+
+  h1 {
+    color: $section-bg;
+    font-size: 4rem;
+    padding-top: 4rem;
+    margin: 0 auto;
+    text-align: center;
+    text-shadow: 0 0 5px $shadow;
+    width: 65%;
+  }
+
+  a {
+    background: $orange;
+    border-radius: rem(3);
+    box-shadow: 0 3px 0 0 $button-shadow;
+    color: $section-bg;
+    display: block;
+    font-family: $sans;
+    font-size: rem(22);
+    height: rem(60);
+    line-height: rem(40);
+    margin: 0 auto;
+    padding: rem(10);
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    top: 49%;
+    width: 24%;
+    z-index: 900;
+  }
+}
+
+.tag {
+  background: $section-bg;
+  padding: rem(30);
+
+  span {
+    color: darken($light-grey, 20%);
+    display: block;
+    text-align: center;
+  }
+}
+
+.index-content {
+  overflow: auto;
+
+  p {
+    line-height: 1.8rem;
+    width: 75%;
+  }
+}
+
+.index-copy {
+  background: brown;
+  height: rem(400);
+  padding: 0 12.5%;
+
+  h4 {
+    margin-top: 8%;
+    width: 75%;
+  }
+
+  p {
+    color: $section-bg;
+    margin-left: rem(10);
+    text-align: left;
+    width: 50%;
+  }
+
+  &.copy-2 {
+    margin-bottom: rem(-40);
+    position: relative;
+    top: rem(-40);
+    z-index: 0;
+
+    a {
+      background: $orange;
+      border-radius: rem(3);
+      color: #fff;
+      display: inline-block;
+      font-family: $sans;
+      margin-left: rem(10);
+      margin-top: rem(10);
+      padding: rem(10);
+      text-decoration: none;
+    }
+  }
+}
+
+.about-us {
+  background: $section-bg;
+  border-radius: rem(3);
+  height: rem(1075);
+  margin: 0 auto;
+  padding: rem(40);
+  position: relative;
+  top: rem(-20);
+  width: 75%;
+  z-index: 10;
+
+  img {
+    float: left;
+    height: rem(150);
+    margin-right: 5%;
+    margin-top: rem(15);
+    width: 20%;
+  }
+
+  h2 {
+    font-family: $serif;
+    text-align: center;
+  }
+
+  h4 {
+    display: block;
+    margin-left: 25%;
+    margin-bottom: 0;
+  }
+
+  p {
+    margin-bottom: rem(70);
+    margin-left: 25%;
+
+    &:first-of-type {
+      float: none;
+      margin: rem(25) auto rem(70);
+      text-align: center;
+    }
+  }
 }
 
 
@@ -94,6 +253,10 @@ ul {
   position: relative;
   width: 42%;
   transition-duration: .05s;
+
+  a {
+    text-decoration: none;
+  }
 
   h4 {
     margin: 0 rem(10);
@@ -139,6 +302,7 @@ header {
 
   .active {
     background: $orange;
+    border-radius: rem(3);
     color: #fff;
   }
 }
@@ -150,11 +314,35 @@ nav {
   top: 35%;
 
   a {
+    border-radius: rem(3);
     color: $grey;
     display: inline-block;
     font-family: $sans;
     padding: rem(10);
+    position: relative;
     text-decoration: none;
+
+    &:last-of-type {
+      background: lighten($light-grey, 5%) !important;
+      padding: rem(10) rem(13);
+      margin-left: rem(10);
+    }
+  }
+
+  .cart-count {
+    background: $orange;
+    border-radius: 50%;
+    color: $section-bg;
+    font-size: rem(11);
+    font-weight: 700;
+    height: rem(20);
+    letter-spacing: auto;
+    line-height: rem(20);
+    position: absolute;
+    right: rem(-10);
+    text-align: center;
+    top: rem(-10);
+    width: rem(20);
   }
 }
 
@@ -176,6 +364,110 @@ nav {
   width: 75%;
 }
 
+
+// ============================================================================
+                              // product view styles
+// =============================================================================
+
+
+.product-view {
+  background: $section-bg;
+  overflow: auto;
+
+  .product-nav {
+    background: lighten($light-grey, 10%);
+    font-size: rem(14);
+    margin: 0;
+    padding: rem(10);
+  }
+
+  .detail-view-left {
+    float: left;
+    margin-right: 3%;
+    padding: rem(25);
+    width: 42%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .detail-view-right {
+    float: left;
+    padding: rem(25);
+    width: 55%;
+
+    p {
+      font-style: italic;
+      margin: 0 rem(20);
+    }
+  }
+
+  .product-header {
+    margin-bottom: 3%;
+    overflow: auto;
+
+    p {
+      font-size: rem(14);
+      margin: 0;
+    }
+
+    span {
+      color: $light-grey;
+      font-style: italic;
+      margin-left: 1%;
+    }
+
+    .product-title {
+      margin-bottom: rem(5);
+      overflow: auto;
+    }
+
+    .title {
+      float: left;
+    }
+
+    .price {
+      float: right;
+    }
+
+    h4 {
+      margin: 0;
+    }
+  }
+
+  .add-to-cart {
+    background: lighten($light-grey, 10%);
+    overflow: auto;
+    padding: rem(15);
+    width: 100%;
+
+    select {
+      -webkit-appearance: none;
+      border-radius: rem(3);
+      height: rem(40);
+      padding: 0 rem(20);
+    }
+
+    input {
+      border: 0;
+      border-radius: rem(3);
+      color: $section-bg;
+      float: right;
+      height: rem(40);
+      padding: rem(10);
+      background: $orange;
+      width: rem(100);
+    }
+
+    .total-price {
+      color: $grey;
+      float: right;
+      line-height: rem(40);
+      margin-right: rem(20);
+    }
+  }
+}
 
 // ============================================================================
                               // sidebar styles
@@ -213,6 +505,85 @@ nav {
     }
   }
 }
+
+
+// ============================================================================
+                              // shopping cart styles
+// =============================================================================
+
+.shopping-cart {
+  background: $section-bg;
+  overflow: auto;
+  padding: rem(30);
+
+  .table-heading,
+  .table-row {
+    overflow: auto;
+
+    * {
+      color: $light-grey;
+      float: left;
+      padding: rem(20);
+      width: rem(100);
+    }
+  }
+
+  .table-row {
+    border: solid 1px $light-grey;
+    border-radius: rem(3);
+
+    * {
+      color: $grey;
+
+    }
+
+    .product-total {
+      color: $orange;
+    }
+
+    .product-name {
+      color: $orange;
+    }
+  }
+
+  .product-name {
+    width: rem(300);
+  }
+
+  .farm-name {
+    width: rem(300);
+  }
+}
+
+.user-data {
+  background: $section-bg;
+  margin-top: rem(50);
+  padding: rem(30);
+
+  input {
+    height: rem(40);
+  }
+
+  .first-name,
+  .last-name {
+    width: 30%;
+  }
+}
+
+.checkout-button {
+  background: $orange;
+  border: 0;
+  border-radius: rem(3);
+  color: $section-bg;
+  font-family: $sans;
+  font-size: rem(20);
+  margin-top: rem(50);
+  margin-left: 37%;
+  padding: rem(15);
+  text-align: center;
+  width: 25%;
+}
+
 
 
 // ============================================================================

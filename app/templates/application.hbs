@@ -8,6 +8,13 @@
       {{#link-to "index"}}Our Mission{{/link-to}}
       {{#link-to "growers"}}Browse Growers{{/link-to}}
       {{#link-to "market"}}Shop Farm Direct Pecans{{/link-to}}
+      {{#link-to "checkout"}}
+        <i class="fa fa-shopping-cart"></i>
+        {{#if cartCount}}
+          <div class="cart-count">10</div>
+        {{/if}}
+      {{/link-to}}
+
     </nav>
   </header>
 

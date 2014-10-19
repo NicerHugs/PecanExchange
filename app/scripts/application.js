@@ -1,6 +1,7 @@
 window.Pecan = Ember.Application.create();
 
-Pecan.Store = DS.Store.extend({
-  revision: 11,
-  url: "http://www.pecanexchange.com"
+DS.RESTAdapter.reopen({
+  host: 'http://pecanexchange.com'
 });
+
+Pecan.ApplicationAdapter = DS.RESTAdapter.extend({});

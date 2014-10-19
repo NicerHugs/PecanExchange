@@ -1,5 +1,4 @@
 Pecan.User = DS.Model.extend({
-  id: DS.attr('string'),
   // buyer or seller?
   acctType: DS.attr('string'),
   username: DS.attr('string'),

@@ -9,10 +9,11 @@
     "neat": "~1.6.0",
     "normalize-css": "~3.0.1",
     "ember": "~1.7.0",
-    "ember-data": "1.0.0-beta.5",
+    "ember-data": "1.0.0-beta.8",
     "handlebars": "~2.0.0"
   },
   "resolutions": {
-    "handlebars": ">= 1.0.0 < 2.0.0"
+    "handlebars": ">= 1.0.0 < 2.0.0",
+    "ember-data": "1.0.0-beta.8"
   }
 }

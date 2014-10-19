@@ -1,1 +1,47 @@
 {{!-- an individual product page. index shows the product and its details. /edit allows the grower to edit that page. --}}
+
+<ul class="product-nav">
+  <li>{{#link-to "index"}}&#60;&#60;Back{{/link-to}}</li>
+</ul>
+
+<div class='detail-view-left'>
+  <img {{bind-attr src=pic}}>
+</div>
+
+<div class="detail-view-right">
+  <div class="product-header">
+    <div class="product-title">
+      <h2 class="title">{{name}}</h2>
+      <h2 class="price">${{retailPrice}}/LB</h2>
+    </div>
+    <p>{{userID.username}}<span>(30 miles from Greenville, SC)</span></p>
+  </div>
+
+  <div class="product-description">
+    <h4>Product Description</h4>
+    <p>{{description}}</p>
+  </div>
+
+  <div class="product-reviews">
+    <h4>Reviews</h4>
+    <p>{{rating}} stars
+      {{countRating}} {{#link-to 'product.reviews' userID}}reviews{{/link-to}}
+    </p>
+  </div>
+
+  <div class="product-quantity">
+    <h4>Quantity</h4>
+    <form class="add-to-cart">
+      {{view Ember.Select
+        content=options
+        optionValuePath="content.id"
+        optionLabelPath="content.description"
+        prompt="Select an option"
+        value=option}}
+      <input type="submit" value="Add to Cart"{{action "addToCart"}}>
+      <span class="total-price">${{selectedOptionPrice}}</span>
+
+    </form>
+
+  </div>
+</div>

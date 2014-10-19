@@ -1,2 +1,57 @@
 {{!-- the checkout page where buyers can make a purchase, display and make basic change to order (delete an item or change quantity) --}}
-Checkout template
+<div class="main-header">
+  <h1>Shopping Cart</h1>
+</div><!--main-header-->
+
+<section class="content">
+  <div class="shopping-cart">
+    <div class="table-heading">
+      <div class="product-name">
+        Product
+      </div>
+      <div class="farm-name">
+        Farm
+      </div>
+      <div class="product-price">
+        Price
+      </div>
+      <div class="product-option">
+        Qty.
+      </div>
+      <div class="product-total">
+        Total
+      </div>
+    </div>
+    {{!-- {{#each}} --}}
+    <div class="table-row">
+      <div class="product-name">
+        Product
+      </div>
+      <div class="farm-name">
+        Farm
+      </div>
+      <div class="product-price">
+        Price
+      </div>
+      <div class="product-option">
+        Qty.
+      </div>
+      <div class="product-total">
+        Total
+      </div>
+    </div>
+    {{!-- {{/each}} --}}
+  </div>
+
+  <div class="user-data">
+    <label name="first-name"><h4>First name</h4></label>
+    <input type='text' name="first-name" class="first-name"></input>
+    <label name="last-name"><h4>Last name</h4></label>
+    <input type='text' name="last-name" class="last-name"></input>
+    <label name="first-name"><h4>First name</h4></label>
+    <input type='text' name="first-name" class="first-name"></input>
+
+  </div>
+
+  <input type="button" class="checkout-button" value="Check Out" {{action "placeOrder"}}>
+</section>
