@@ -23,13 +23,13 @@ $sans: 'futura-pt';
 // =============================================================================
 
 body {
-  background: $grey;
+  background: $dark-grey;
   color: $grey;
   font-family: $serif;
 }
 
 .container {
-  margin: rem(100);
+  margin: 0 rem(100);
   overflow: auto;
 }
 
@@ -683,9 +683,9 @@ footer {
 //=============================================================================
 
 .login-form {
-  background: brown;
+  background: url('../images/bg-login.jpg');
   height: rem(700);
-  padding: rem(50);
+  padding: rem(80);
 
   form {
     background: $section-bg;
