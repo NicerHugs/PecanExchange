@@ -1,2 +1,13 @@
 {{!-- user supplies username and email and can login or (grower only) sign-up. sign-up should redirect them to grower/edit page--}}
-login template
+<div class="login-form">
+  <form>
+    {{#link-to "index" class="create-account"}}Create Account{{/link-to}}
+    <div class="line"></div>
+
+    <label><h4>Email</h4></label>
+    {{input type="text" placeholder="Email" value=email}}
+    <label><h4>Password</h4></label>
+    {{input type="password" placeholder="Password" value=password}}
+    <input type="submit" value="Login" {{action "login"}}>
+  </form>
+</div>

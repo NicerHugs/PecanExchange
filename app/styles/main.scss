@@ -553,6 +553,10 @@ nav {
   .farm-name {
     width: rem(300);
   }
+
+  .product-option {
+    width: rem(200);
+  }
 }
 
 .user-data {
@@ -658,8 +662,65 @@ footer {
   }
 }
 
+//=============================================================================
+                          //login, logout, create account
+//=============================================================================
 
+.login-form {
+  background: brown;
+  height: rem(700);
+  padding: rem(50);
 
+  form {
+    background: $section-bg;
+    border-radius: rem(3);
+    height: rem(400);
+    margin: 0 auto;
+    padding: rem(30);
+    width: 40%;
+  }
+
+  .create-account {
+    background: $orange;
+    border-radius: rem(3);
+    color: $section-bg;
+    display: block;
+    font-family: $sans;
+    padding: rem(15);
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+  }
+
+  .line {
+    border-bottom: solid 2px $light-grey;
+    margin: rem(25) 0 rem(15);
+    width: 100%;
+  }
+
+  h4 {
+    margin: 0;
+  }
+
+  input {
+    border: solid 1px $light-grey;
+    border-radius: rem(3);
+    box-shadow: inset 0 1px 3px $shadow;
+    height: rem(40);
+    margin: rem(10) 0 rem(25);
+    width: 100%;
+  }
+
+  input[type=submit] {
+    background: $orange;
+    border: 0;
+    box-shadow: none;
+    color: $section-bg;
+    float: right;
+    font-family: $sans;
+    width: 30%;
+  }
+}
 
 
 

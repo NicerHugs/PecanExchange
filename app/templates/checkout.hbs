@@ -12,11 +12,8 @@
       <div class="farm-name">
         Farm
       </div>
-      <div class="product-price">
-        Price
-      </div>
       <div class="product-option">
-        Qty.
+        Option
       </div>
       <div class="product-total">
         Total
@@ -25,19 +22,16 @@
     {{!-- {{#each}} --}}
     <div class="table-row">
       <div class="product-name">
-        {{name}}
+        {{product.name}}
       </div>
       <div class="farm-name">
-        Farm
-      </div>
-      <div class="product-price">
-        Price
+        {{product.userID.username}}
       </div>
       <div class="product-option">
-        Qty.
+        Option
       </div>
       <div class="product-total">
-        Total
+        {{product.retailPrice}}
       </div>
     </div>
     {{!-- {{/each}} --}}
