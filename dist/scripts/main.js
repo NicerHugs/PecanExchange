@@ -37,6 +37,7 @@ Pecan.Router.map(function() {
 });
 
 Pecan.ApplicationController = Ember.Controller.extend({
+  needs: ['checkout'],
   init: function() {
     this._super();
     var order = this.store.createRecord('order', {
@@ -44,6 +45,18 @@ Pecan.ApplicationController = Ember.Controller.extend({
     });
     this.set('order', order);
   },
+  // productSelected: function() {
+  //   var product = (this.store.find('product',
+  //     this.get('order').get('orderItems'))
+  //     .then(function(data) {
+  //       return data;
+  //     }));
+  //   console.log(product);
+  //   return product;
+  //   }.property('order'),
+  itemsCount: function() {
+    return this.get('controllers.checkout.product').length;
+  }.property('orderItems'),
   actions: {
     logout: function() {
       this.transitionToRoute('logout');
@@ -57,14 +70,15 @@ Pecan.MarketContoller = Ember.ArrayController.extend({
 });
 
 Pecan.ProductIndexController = Ember.ObjectController.extend({
-  needs: 'application',
+  needs: ['application', 'checkout'],
   actions: {
     addToCart: function() {
       var orderItem = this.store.createRecord('orderDetail',
         {id: 'orderItem' + Date.now()});
       var order = this.get('controllers.application.order');
       order.set('orderItems', orderItem.get('id'));
-      console.log(order);
+      this.get('controllers.checkout.product').addObject(this.get('model'));
+      console.log(this.get('controllers.checkout.product'));
     }
   }
 });
@@ -77,11 +91,18 @@ Pecan.ProductController = Ember.ObjectController.extend({
 });
 
 Pecan.CheckoutController = Ember.ObjectController.extend({
+  product: [],
   actions: {
     placeOrder: function() {
       this.get('model').save();
     }
   }
+});
+
+// user is directed to
+Pecan.LoginContoller = Ember.Controller.extend({
+  password: '',
+  email: '',
 });
 
 Pecan.Order = DS.Model.extend({
@@ -223,8 +244,12 @@ function program7(depth0,data) {
   }
 function program8(depth0,data) {
   
-  
-  data.buffer.push("\n          <div class=\"cart-count\">1</div>\n        ");
+  var buffer = '', stack1;
+  data.buffer.push("\n          <div class=\"cart-count\">");
+  stack1 = helpers._triageMustache.call(depth0, "itemsCount", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</div>\n        ");
+  return buffer;
   }
 
 function program10(depth0,data) {
@@ -263,6 +288,12 @@ function program20(depth0,data) {
   data.buffer.push("Account Details");
   }
 
+function program22(depth0,data) {
+  
+  
+  data.buffer.push("Sign Up");
+  }
+
   data.buffer.push("\n<div class=\"container\">\n  <header>\n    <div class=\"logo\">\n      <img src=\"images/Logo.png\">\n    </div>\n    <nav>\n      ");
   stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "index", options) : helperMissing.call(depth0, "link-to", "index", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
@@ -299,6 +330,9 @@ function program20(depth0,data) {
   data.buffer.push("\n      </li>\n      <li>\n        ");
   stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(20, program20, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "index", options) : helperMissing.call(depth0, "link-to", "index", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n      </li>\n      <li>\n        ");
+  stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(22, program22, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "login", options) : helperMissing.call(depth0, "link-to", "login", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n      </li>\n    </ul>\n    <ul>\n      <h4>Contact</h4>\n      <li>\n        411 University Ridge,\n      </li>\n      <li>\n        Greenville, SC 29607\n      </li>\n    </ul>\n  </footer>\n</div><!--container-->\n");
   return buffer;
   
@@ -320,10 +354,10 @@ function program3(depth0,data) {
   data.buffer.push("Build Your Custom Farm Store");
   }
 
-  data.buffer.push("\n<div class=\"index-header\">\n<h1>The Platform For Farmer-Direct Pecans</h1>\n");
+  data.buffer.push("\n<div class=\"index-header\">\n  <h1>The Platform For<br/>Farmer-Direct Pecans</h1>\n  <img class=\"product-preview\" src=\"images/marketing/masthead-productpreview.png\">\n  ");
   stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "market", options) : helperMissing.call(depth0, "link-to", "market", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n</div>\n\n<section class=\"tag\">\n  <h3>Buy Farm-Direct Pecans At Up 60% Less Than Market Cost</h3>\n  <span>We eliminate layers in the supply chain - maximizing income for the farmer and lowering costs for the buyer. </span>\n</section>\n\n<div class=\"index-content\">\n  <div class=\"index-copy copy-1\">\n  <h4>Transforming the supply chain</h4>\n  <p>\n    The Pecan Exchange platform gives farmers direct access to the buyers for their crop, allowing them to have a larger share of the revenue. By being closer to the consumer, the farmer captures added value from his crop to support his family and community, while also investing in the future.\n  </p>\n  </div>\n\n  <section class=\"about-us\">\n    <h2>About Us</h2>\n    <p>Pecan Exchange is transforming the pecan supply chain through an innovative online platform that connects buyers directly with pecan farmers.  We eliminate layers in the supply chain - maximizing income for the farmer and lowering costs for the buyer.  </p>\n    <img src=\"\">\n    <h4>How do farmers benefit?</h4>\n    <p>Farmers normally receive only a small percentage of the value their crop generates. The farmer typically loses ownership in the earliest stage of this process. Pecan Exchange allows farmers to maintain ownership all  the way through the end sales, allowing them to have a larger share in the revenue generated.</p>\n    <img src=\"\">\n    <h4>How do retailers benefit?</h4>\n    <p>\n      Pecan Exchange approach is trending business model in today’s world. More often than not, consumers are demanding more from the companies that are receiving their hard earned money.  Pecan Exchange’s farmer-direct platform allows our customers to know each farmer’s story.  And customers appreciate these stories.\n    </p>\n    <img src=\"\">\n    <h4>How do consumers benefit?</h4>\n    <p>\n      Through Pecan Exchange, pecan lovers have a access to pecans from premier growers throughout the USA – at prices comparable to mass-produced pecans. Best of all, pecan lovers get to “know who grows” their favorite pecan pie.\n    </p>\n  </section>\n\n  <div class=\"index-copy copy-2\">\n    <h4>Transforming the supply chain</h4>\n    <p>\n      The Pecan Exchange platform gives farmers direct access to the buyers for their crop, allowing them to have a larger share of the revenue. By being closer to the consumer, the farmer captures added value from his crop to support his family and community, while also investing in the future.\n    </p>\n    ");
+  data.buffer.push("\n</div>\n\n<section class=\"tag\">\n  <h3>Buy Farm-Direct Pecans At Up 60% Less Than Market Cost</h3>\n  <span>We eliminate layers in the supply chain - maximizing income for the farmer and lowering costs for the buyer. </span>\n</section>\n\n<div class=\"index-content\">\n  <div class=\"index-copy copy-1\">\n  <h4>Transforming the supply chain</h4>\n  <p>\n    The Pecan Exchange platform gives farmers direct access to the buyers for their crop, allowing them to have a larger share of the revenue. By being closer to the consumer, the farmer captures added value from his crop to support his family and community, while also investing in the future.\n  </p>\n  </div>\n\n  <section class=\"about-us\">\n    <h2>About Us</h2>\n    <p>Pecan Exchange is transforming the pecan supply chain through an innovative online platform that connects buyers directly with pecan farmers.  We eliminate layers in the supply chain - maximizing income for the farmer and lowering costs for the buyer.  </p>\n    <img src=\"images/marketing/section2-farmer.png\">\n    <h4>How do farmers benefit?</h4>\n    <p>Farmers normally receive only a small percentage of the value their crop generates. The farmer typically loses ownership in the earliest stage of this process. Pecan Exchange allows farmers to maintain ownership all  the way through the end sales, allowing them to have a larger share in the revenue generated.</p>\n    <img src=\"images/marketing/section2-farmer.png\">\n    <h4>How do retailers benefit?</h4>\n    <p>\n      Pecan Exchange approach is trending business model in today’s world. More often than not, consumers are demanding more from the companies that are receiving their hard earned money.  Pecan Exchange’s farmer-direct platform allows our customers to know each farmer’s story.  And customers appreciate these stories.\n    </p>\n    <img src=\"images/marketing/section2-farmer.png\">\n    <h4>How do consumers benefit?</h4>\n    <p>\n      Through Pecan Exchange, pecan lovers have a access to pecans from premier growers throughout the USA – at prices comparable to mass-produced pecans. Best of all, pecan lovers get to “know who grows” their favorite pecan pie.\n    </p>\n  </section>\n\n  <div class=\"index-copy copy-2\">\n    <h4>Transforming the supply chain</h4>\n    <p>\n      The Pecan Exchange platform gives farmers direct access to the buyers for their crop, allowing them to have a larger share of the revenue. By being closer to the consumer, the farmer captures added value from his crop to support his family and community, while also investing in the future.\n    </p>\n    ");
   stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "login", options) : helperMissing.call(depth0, "link-to", "login", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n  </div>\n</div>\n");
@@ -445,13 +479,28 @@ function program3(depth0,data) {
 Ember.TEMPLATES["checkout"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, escapeExpression=this.escapeExpression;
+  var buffer = '', stack1, self=this, escapeExpression=this.escapeExpression;
 
-
-  data.buffer.push("\n<div class=\"main-header\">\n  <h1>Shopping Cart</h1>\n</div><!--main-header-->\n\n<section class=\"content\">\n  <div class=\"shopping-cart\">\n    <div class=\"table-heading\">\n      <div class=\"product-name\">\n        Product\n      </div>\n      <div class=\"farm-name\">\n        Farm\n      </div>\n      <div class=\"product-price\">\n        Price\n      </div>\n      <div class=\"product-option\">\n        Qty.\n      </div>\n      <div class=\"product-total\">\n        Total\n      </div>\n    </div>\n    \n    <div class=\"table-row\">\n      <div class=\"product-name\">\n        ");
+function program1(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push("\n    <div class=\"table-row\">\n      <div class=\"product-name\">\n        ");
   stack1 = helpers._triageMustache.call(depth0, "name", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n      </div>\n      <div class=\"farm-name\">\n        Farm\n      </div>\n      <div class=\"product-price\">\n        Price\n      </div>\n      <div class=\"product-option\">\n        Qty.\n      </div>\n      <div class=\"product-total\">\n        Total\n      </div>\n    </div>\n    \n  </div>\n\n  <div class=\"user-data\">\n    <div class=\"name\">\n    <label name=\"first-name\" class=\"first-name\"><h4>First name</h4>\n      <input type='text' name=\"first-name\" class=\"first-name\"></input>\n    </label>\n    </div>\n    <div class=\"name\">\n    <label name=\"last-name\" class=\"last-name\"><h4>Last name</h4>\n      <input type='text' name=\"last-name\" class=\"last-name\"></input>\n    </label>\n    </div>\n    <div class=\"name\">\n    <label name=\"company-name\" class=\"company-name\"><h4>Company</h4>\n      <input type='text' name=\"company-name\" class=\"compnay-name\"></input>\n    </label>\n    </div>\n    <div class=\"address\">\n    <label name=\"address\" class=\"address-\"><h4>Address</h4>\n      <input type='text' name=\"address\" class=\"address-\"></input>\n    </label>\n    </div>\n    <div class=\"zip\">\n    <label name=\"address\" class=\"address-\"><h4>Zip</h4>\n      <input type='text' name=\"address\" class=\"address-\"></input>\n    </label>\n    </div>\n    <div class=\"country\">\n    <label name=\"address\" class=\"address-\"><h4>Country</h4>\n      <input type='text' name=\"address\" class=\"address-\"></input>\n    </label>\n    </div>\n    <div class=\"phone\">\n    <label name=\"address\" class=\"address-\"><h4>Phone</h4>\n      <input type='text' name=\"address\" class=\"address-\"></input>\n    </label>\n    </div>\n    <div class=\"zip\">\n    <label name=\"address\" class=\"address-\"><h4>Email Address</h4>\n      <input type='text' name=\"address\" class=\"address-\"></input>\n    </label>\n    </div>\n  </div>\n\n  <input type=\"button\" class=\"checkout-button\" value=\"Check Out\" ");
+  data.buffer.push("\n      </div>\n      <div class=\"farm-name\">\n        ");
+  stack1 = helpers._triageMustache.call(depth0, "userID.username", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n      </div>\n      <div class=\"product-option\">\n        Option\n      </div>\n      <div class=\"product-total\">\n        ");
+  stack1 = helpers._triageMustache.call(depth0, "retailPrice", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n      </div>\n    </div>\n    ");
+  return buffer;
+  }
+
+  data.buffer.push("\n<div class=\"main-header\">\n  <h1>Shopping Cart</h1>\n</div><!--main-header-->\n\n<section class=\"content\">\n  <div class=\"shopping-cart\">\n    <div class=\"table-heading\">\n      <div class=\"product-name\">\n        Product\n      </div>\n      <div class=\"farm-name\">\n        Farm\n      </div>\n      <div class=\"product-option\">\n        Option\n      </div>\n      <div class=\"product-total\">\n        Total\n      </div>\n    </div>\n    ");
+  stack1 = helpers.each.call(depth0, "product", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n  </div>\n\n  <div class=\"user-data\">\n    <div class=\"name\">\n    <label name=\"first-name\" class=\"first-name\"><h4>First name</h4>\n      <input type='text' name=\"first-name\" class=\"first-name\"></input>\n    </label>\n    </div>\n    <div class=\"name\">\n    <label name=\"last-name\" class=\"last-name\"><h4>Last name</h4>\n      <input type='text' name=\"last-name\" class=\"last-name\"></input>\n    </label>\n    </div>\n    <div class=\"name\">\n    <label name=\"company-name\" class=\"company-name\"><h4>Company</h4>\n      <input type='text' name=\"company-name\" class=\"compnay-name\"></input>\n    </label>\n    </div>\n    <div class=\"address\">\n    <label name=\"address\" class=\"address-\"><h4>Address</h4>\n      <input type='text' name=\"address\" class=\"address-\"></input>\n    </label>\n    </div>\n    <div class=\"zip\">\n    <label name=\"address\" class=\"address-\"><h4>Zip</h4>\n      <input type='text' name=\"address\" class=\"address-\"></input>\n    </label>\n    </div>\n    <div class=\"country\">\n    <label name=\"address\" class=\"address-\"><h4>Country</h4>\n      <input type='text' name=\"address\" class=\"address-\"></input>\n    </label>\n    </div>\n    <div class=\"phone\">\n    <label name=\"address\" class=\"address-\"><h4>Phone</h4>\n      <input type='text' name=\"address\" class=\"address-\"></input>\n    </label>\n    </div>\n    <div class=\"zip\">\n    <label name=\"address\" class=\"address-\"><h4>Email Address</h4>\n      <input type='text' name=\"address\" class=\"address-\"></input>\n    </label>\n    </div>\n  </div>\n\n  <input type=\"button\" class=\"checkout-button\" value=\"Check Out\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "placeOrder", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push(">\n</section>\n");
   return buffer;
@@ -473,10 +522,34 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 Ember.TEMPLATES["login"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '';
+  var buffer = '', stack1, helper, options, self=this, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
+function program1(depth0,data) {
+  
+  
+  data.buffer.push("Create Account");
+  }
 
-  data.buffer.push("\nlogin template\n");
+  data.buffer.push("\n<div class=\"login-form\">\n  <form>\n    ");
+  stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{
+    'class': ("create-account")
+  },hashTypes:{'class': "STRING"},hashContexts:{'class': depth0},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "index", options) : helperMissing.call(depth0, "link-to", "index", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    <div class=\"line\"></div>\n\n    <label><h4>Email</h4></label>\n    ");
+  data.buffer.push(escapeExpression((helper = helpers.input || (depth0 && depth0.input),options={hash:{
+    'type': ("text"),
+    'placeholder': ("Email"),
+    'value': ("email")
+  },hashTypes:{'type': "STRING",'placeholder': "STRING",'value': "ID"},hashContexts:{'type': depth0,'placeholder': depth0,'value': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n    <label><h4>Password</h4></label>\n    ");
+  data.buffer.push(escapeExpression((helper = helpers.input || (depth0 && depth0.input),options={hash:{
+    'type': ("password"),
+    'placeholder': ("Password"),
+    'value': ("password")
+  },hashTypes:{'type': "STRING",'placeholder': "STRING",'value': "ID"},hashContexts:{'type': depth0,'placeholder': depth0,'value': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n    <input type=\"submit\" value=\"Login\" ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "login", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(">\n  </form>\n</div>\n");
   return buffer;
   
 });

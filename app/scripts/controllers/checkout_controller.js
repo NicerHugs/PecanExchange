@@ -1,5 +1,5 @@
 Pecan.CheckoutController = Ember.ObjectController.extend({
-  product: {},
+  product: [],
   actions: {
     placeOrder: function() {
       this.get('model').save();

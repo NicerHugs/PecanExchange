@@ -19,22 +19,22 @@
         Total
       </div>
     </div>
-    {{!-- {{#each}} --}}
+    {{#each product}}
     <div class="table-row">
       <div class="product-name">
-        {{product.name}}
+        {{name}}
       </div>
       <div class="farm-name">
-        {{product.userID.username}}
+        {{userID.username}}
       </div>
       <div class="product-option">
         Option
       </div>
       <div class="product-total">
-        {{product.retailPrice}}
+        {{retailPrice}}
       </div>
     </div>
-    {{!-- {{/each}} --}}
+    {{/each}}
   </div>
 
   <div class="user-data">

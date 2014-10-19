@@ -11,7 +11,7 @@
       {{#link-to "checkout"}}
         <i class="fa fa-shopping-cart"></i>
         {{#if order.orderItems}}
-          <div class="cart-count">1</div>
+          <div class="cart-count">{{itemsCount}}</div>
         {{/if}}
       {{/link-to}}
 
