@@ -10,8 +10,8 @@
       {{#link-to "market"}}Shop Farm Direct Pecans{{/link-to}}
       {{#link-to "checkout"}}
         <i class="fa fa-shopping-cart"></i>
-        {{#if cartCount}}
-          <div class="cart-count">10</div>
+        {{#if order.orderItems}}
+          <div class="cart-count">1</div>
         {{/if}}
       {{/link-to}}
 

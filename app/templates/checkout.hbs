@@ -25,7 +25,7 @@
     {{!-- {{#each}} --}}
     <div class="table-row">
       <div class="product-name">
-        Product
+        {{name}}
       </div>
       <div class="farm-name">
         Farm
@@ -44,13 +44,46 @@
   </div>
 
   <div class="user-data">
-    <label name="first-name"><h4>First name</h4></label>
-    <input type='text' name="first-name" class="first-name"></input>
-    <label name="last-name"><h4>Last name</h4></label>
-    <input type='text' name="last-name" class="last-name"></input>
-    <label name="first-name"><h4>First name</h4></label>
-    <input type='text' name="first-name" class="first-name"></input>
-
+    <div class="name">
+    <label name="first-name" class="first-name"><h4>First name</h4>
+      <input type='text' name="first-name" class="first-name"></input>
+    </label>
+    </div>
+    <div class="name">
+    <label name="last-name" class="last-name"><h4>Last name</h4>
+      <input type='text' name="last-name" class="last-name"></input>
+    </label>
+    </div>
+    <div class="name">
+    <label name="company-name" class="company-name"><h4>Company</h4>
+      <input type='text' name="company-name" class="compnay-name"></input>
+    </label>
+    </div>
+    <div class="address">
+    <label name="address" class="address-"><h4>Address</h4>
+      <input type='text' name="address" class="address-"></input>
+    </label>
+    </div>
+    <div class="zip">
+    <label name="address" class="address-"><h4>Zip</h4>
+      <input type='text' name="address" class="address-"></input>
+    </label>
+    </div>
+    <div class="country">
+    <label name="address" class="address-"><h4>Country</h4>
+      <input type='text' name="address" class="address-"></input>
+    </label>
+    </div>
+    <div class="phone">
+    <label name="address" class="address-"><h4>Phone</h4>
+      <input type='text' name="address" class="address-"></input>
+    </label>
+    </div>
+    <div class="zip">
+    <label name="address" class="address-"><h4>Email Address</h4>
+      <input type='text' name="address" class="address-"></input>
+    </label>
+    </div>
   </div>
 
   <input type="button" class="checkout-button" value="Check Out" {{action "placeOrder"}}>

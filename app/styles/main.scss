@@ -558,15 +558,38 @@ nav {
 .user-data {
   background: $section-bg;
   margin-top: rem(50);
+  overflow: auto;
   padding: rem(30);
 
   input {
     height: rem(40);
+    width: 100%
   }
 
-  .first-name,
-  .last-name {
-    width: 30%;
+  .name {
+    float: left;
+    width: 33%;
+    padding: rem(10);
+  }
+  .address {
+    float: left;
+    width: 75%;
+    padding: rem(10);
+  }
+  .zip {
+    float: left;
+    width: 25%;
+    padding: rem(10);
+  }
+  .phone {
+    float: left;
+    width: 25%;
+    padding: rem(10);
+  }
+  .country {
+    float: left;
+    width: 50%;
+    padding: rem(10);
   }
 }
 
